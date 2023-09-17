@@ -1,4 +1,7 @@
-import pandas sd pd
+import pandas as pd
+import pickle
+from sklearn.impute import SimpleImputer
+
 
 class DataCleaner:
     @staticmethod
