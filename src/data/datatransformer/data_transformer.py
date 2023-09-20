@@ -1,11 +1,18 @@
+import pickle
+import os
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import OrdinalEncoder
+from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import RobustScaler
 
 
-class DataFeatureTransformer:
 
-    def log_transform_feature(dataset: pd.DataFrame) -> pd.DataFrame:
+class DataTransformer:
+
+    def log_transform(dataset: pd.DataFrame) -> pd.DataFrame:
         dataset = dataset.copy()
         try:
             numerical_columns = dataset.select_dtypes(include=['int', 'float']).columns
@@ -14,7 +21,7 @@ class DataFeatureTransformer:
             print(e)
         return dataset
 
-    def ordinal_encoding(dataset: pd.DataFrame) -> pd.DataFrame:
+    def ordinal_encode(dataset: pd.DataFrame) -> pd.DataFrame:
         dataset = dataset.copy()
         ordinal_categorical_columns ={
             "ExterQual": ["Ex", "Gd", "TA", "Fa", "Po"], 
@@ -41,7 +48,7 @@ class DataFeatureTransformer:
                 dataset[f] = ordinal_encoder.fit_transform(dataset[[f]]).astype(int) # ordinal encoding
         return dataset
     
-    def one_hot_encoding(dataset: pd.DataFrame) -> pd.DataFrame:
+    def one_hot_encode(dataset: pd.DataFrame) -> pd.DataFrame:
         one_hot_categorical_columns = {
             "MSSubClass": ["20", "30", "40", "45",	"50", "60", "70", "75", "80", "85", "90", "120", "150", "160", "180", "190"],
             "MSZoning": ["A", "C", "FV", "I", "RH", "RL", "RP", "RM"],

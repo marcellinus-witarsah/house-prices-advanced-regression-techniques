@@ -1,6 +1,6 @@
 import pandas as pd
 
-class DataFeatureSelector:
+class DataSelector:
     @staticmethod
     def select_feature(dataset: pd.DataFrame, features: list) -> pd.DataFrame:
         dataset = dataset.copy()
